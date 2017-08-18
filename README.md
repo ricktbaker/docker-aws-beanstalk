@@ -7,6 +7,7 @@ This is a simple node app (hapi.js) inside a docker container that can be run lo
 You can deploy this locally fairly simple.   You'll need AWS credentials with access to AWS ECR and ElasticBeanstalk.
 
 Credentials should be saved locally so they do not need to be in your repo, see more about this [here](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+and [here](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
 
   - Create your beanstalk application
   - Create your s3 bucket to hold your application versions
