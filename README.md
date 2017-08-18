@@ -1,6 +1,6 @@
 ## Sample docker app deployed to beanstak
 
-This is a simple node app inside a docker container that can be run locally, and also deployed to AWS beanstalk using docker images stored in AWS ECR.
+This is a simple node app (hapi.js) inside a docker container that can be run locally, and also deployed to AWS beanstalk using docker images stored in AWS ECR.
 
 ## Deploying to beanstalk via shell
 
