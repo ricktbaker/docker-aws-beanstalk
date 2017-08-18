@@ -4,8 +4,8 @@ require 'rubygems'
 
 ## AWS Credentials
 AWS_REGION ='us-east-1';
-AWS_KEY = "AKIAI4HJSLNZ7MIGMYMQ"
-AWS_SEC = "5bsLwokxdGyAdYnIrRamXgL4j4mrJVj0tmZczHlF"
+AWS_KEY = "aws_access_key_id"
+AWS_SEC = "aws_secret_access_key"
 BEANSTALK_APP = "test-app"
 VERSION_LABEL_BASE = "deploy"
 
@@ -41,6 +41,33 @@ puts(`docker push ricktbaker/node_beanstalk:latest`)
 puts "Ready to trigger deployment in beanstalk..."
 
 
+Aws.config.update({
+  region: AWS_REGION,
+  credentials: Aws::Credentials.new(AWS_KEY,AWS_SEC)
+})
 
+client = Aws::ElasticBeanstalk::Client.new(region: AWS_REGION)
+
+resp = client.update_environment({
+  environment_name: BEANSTALK_APP,
+  version_label: "deploy"
+})
+
+puts resp.to_h[:status]
+
+# Check to see when deploy is finished
+$status = 0
+until $status == 'Ready' do
+  resp = client.describe_environments({
+    environment_names: [BEANSTALK_APP]
+  })
+
+  data = resp.to_h[:environments]
+  $status = data[0][:status]
+  puts $status
+  if $status != 'Ready'
+    sleep(5)
+  end
+end
 
 
