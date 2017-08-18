@@ -9,13 +9,14 @@ BRANCH=$1
 SHA1=`echo -n $NOW | openssl dgst -sha1 |awk '{print $NF}'`
 
 AWS_ACCOUNT_ID=12345678900
-NAME=name-of-service-to-deploy
-EB_BUCKET=aws-s3-bucket-to-hold-application-versions
+NAME=beanstalk-application-name-to-deploy
+EB_BUCKET=s3-bucket-for-application-versions
+REGION='us-east-1'
 
 VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
 
-aws configure set default.region us-east-1
+aws configure set default.region $REGION
 
 # Authenticate against our Docker registry
 eval $(aws ecr get-login)
