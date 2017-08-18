@@ -13,6 +13,7 @@ and [here](http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
   - Create your s3 bucket to hold your application versions
   - Create your ECR repository to hold your docker image (name should be the same as your beanstalk application for simplicity)
   - Modify variables in deploy.sh with the above
+  - Modify anything else in the dockerrun.aws.template file for you needs, instance size, environment variables, etc.
 
 `./deploy.sh production`
 
