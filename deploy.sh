@@ -8,6 +8,7 @@ NOW=`date +%s`
 BRANCH=$1
 SHA1=`echo -n $NOW | openssl dgst -sha1 |awk '{print $NF}'`
 
+# Main variables to modify for your account
 AWS_ACCOUNT_ID=12345678900
 NAME=beanstalk-application-name-to-deploy
 EB_BUCKET=s3-bucket-for-application-versions
